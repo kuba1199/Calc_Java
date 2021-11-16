@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.title{
+	font-family: 'Montagu Slab', serif;
+	text-alignt:center;
+}
+
+.body{
+	background-color:rgb(127, 60, 130);
+}
+
+.panel{
+	margin:auto;
+	min-width: 700px;
+}

@@ -5,51 +5,58 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"> 
-<h:head>
-	<title>Kalkulator kredytowy</title>
-</h:head>
-<h:body>
 	
-		<h:form>
-			<h1>Kalkulator kredytowy</h1>
-			<h:panelGrid id="grid" columns="3" cellpadding="5">
-				<h:outputLabel for="cash" value="Kwota:" />
-		  		<p:inputText id="cash" value="#{credBB.cash}" required="true" 
-		 			requiredMessage="Wprowadz kwotę" 
-			    	converterMessage="Kwota musi byc wartością numeryczną"
-			    	validatorMessage="Kwota musi wynosić minimum 2 000">
-			    	<f:validateDoubleRange minimum="2000" /> 
-			    </p:inputText>
-			    <p:message for="cash" />
-				
-				<h:outputLabel for="time" value="Czas:" />
-		  		<p:inputText id="time" value="#{credBB.time}" required="true"
-		  				requiredMessage="Wprowadz liczbę miesięcy " 
-			        	converterMessage="Wartość musi być numeryczna"
-			        	validatorMessage="Ilość miesięcy musi być większa niż 6">
-			        	<f:validateDoubleRange minimum="6" />
-			    </p:inputText>
-			    <p:message for="time" />    	
-				
-				
-				<h:outputLabel for="percent" value="Oprocentowanie:" />
-				<p:inputText id="percent" value="#{credBB.percent}" required="true"
-						requiredMessage="Wprowadz oprocenowanie" 
-			        	converterMessage="Wartość musi być numeryczna"
-			        	validatorMessage="Wartość oprocentowania musi być większa niż 1">
-			        	<f:validateDoubleRange minimum="1" />
-			    </p:inputText>
-			    <p:message for="percent" />
-				
-				
-			</h:panelGrid>
+
+<ui:composition template="/templates/main-template.xhtml">
+	<ui:define name="title">Kalkulator kredytowy
+	</ui:define>
 			
-			<p> Rata miesięczna wynosi: #{credBB.result} zł</p>
-			<p:commandButton value="Oblicz ratę" action="#{credBB.countRate()}" update="@form"/>
-			<br />
-			
-		
+			<ui:define name="pageContent">
+			<p:panel header="Obliczanie raty kredytu" class="panel" toggleable="true" closeable="true" toggleSpeed="1000">
 	
-		</h:form>
-</h:body>
+				<h:form>
+					<h1>Podaj następujące dane:</h1>
+					<h:panelGrid id="grid" columns="3" cellpadding="5">
+						<h:outputLabel for="cash" value="Kwota:" />
+				  		<p:inputText id="cash" value="#{credBB.cash}" required="true" 
+				 			requiredMessage="Wprowadz kwotę" 
+					    	converterMessage="Kwota musi byc wartością numeryczną"
+					    	validatorMessage="Kwota musi wynosić minimum 2 000">
+					    	<f:validateDoubleRange minimum="2000" /> 
+					    </p:inputText>
+					    <p:message for="cash" />
+						
+						<h:outputLabel for="time" value="Czas:" />
+				  		<p:inputText id="time" value="#{credBB.time}" required="true"
+				  				requiredMessage="Wprowadz liczbę miesięcy " 
+					        	converterMessage="Wartość musi być numeryczna"
+					        	validatorMessage="Ilość miesięcy musi być większa niż 6">
+					        	<f:validateDoubleRange minimum="6" />
+					    </p:inputText>
+					    <p:message for="time" />    	
+						
+						
+						<h:outputLabel for="percent" value="Oprocentowanie:" />
+						<p:inputText id="percent" value="#{credBB.percent}" required="true"
+								requiredMessage="Wprowadz oprocenowanie" 
+					        	converterMessage="Wartość musi być numeryczna"
+					        	validatorMessage="Wartość oprocentowania musi być większa niż 1">
+					        	<f:validateDoubleRange minimum="1" />
+					    </p:inputText>
+					    <p:message for="percent" />
+						
+						
+					</h:panelGrid>
+					
+					<p> Rata miesięczna wynosi: #{credBB.result} zł</p>
+					<p:commandButton value="Oblicz ratę" action="#{credBB.countRate()}" update="@form"/>
+					<br />
+					
+				
+			
+					</h:form>
+				</p:panel>
+				<h2>Jakub Karbowski || Group:PAW3</h2>
+			</ui:define>
+	</ui:composition>
 </html>
